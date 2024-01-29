@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login'])->name('api.login');
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('users', [App\Http\Controllers\API\AuthController::class, 'users'])->name('users');
+
+    Route::prefix('msc')->group(function () {
+        Route::get('all',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
+        Route::post('detail',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getDetailMsc'])->name('msc.detail');
+        Route::put('update',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'updateMsc'])->name('msc.update');
+        // Route::get('msc',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
+        // Route::get('msc',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
+    });
 });

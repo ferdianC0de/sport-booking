@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('mst_sport_types', function (Blueprint $table) {
+            $table->string('cd_sport_type')->primary();
+            $table->string('name');
+            $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('mst_sport_types');
     }
 };

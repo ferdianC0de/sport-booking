@@ -13,20 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('cd_user')->primary();
+        Schema::create('mst_sport_centers', function (Blueprint $table) {
+            $table->string('cd_sport_center')->primary();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-
-            $table->date('birth')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longtitude')->nullable();
             $table->text('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('contact')->nullable();
 
-            $table->string('cd_role')->references('cd_role')->on('roles');
-
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('mst_sport_centers');
     }
 };

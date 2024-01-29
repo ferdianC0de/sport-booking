@@ -4,25 +4,25 @@ namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\API\BASEAPIController;
 use Illuminate\Http\Request;
-use App\Models\MstSportCenter;
+use App\Models\MstSportType;
 
-class MasterSportCenterController extends BASEAPIController
+class MasterSportTypeController extends BASEAPIController
 {
-    private $model = MstSportCenter::class;
+    private $model = MstSportType::class;
 
-
-    public function getAllMsc()
+    public function all()
     {
         return $this->getAll($this->model);
     }
 
-    public function getDetailMsc(Request $request)
+    public function detail(Request $request)
     {
         $param = $request->json()->all();
         return $this->getDetail($this->model, $param['id']);
     }
 
-    public function updateMsc(Request $request){
+    public function update(Request $request)
+    {
         $param = $request->json()->all();
         $id = $param['id'];
         $data = $request->except('id');
@@ -31,13 +31,15 @@ class MasterSportCenterController extends BASEAPIController
 
     }
 
-    public function deleteMsc(Request $request){
+    public function delete(Request $request)
+    {
         $param = $request->json()->all();
 
         return $this->responseDelete($this->model, $param['id']);
     }
 
-    public function createMsc(Request $request){
+    public function create(Request $request)
+    {
         $param = $request->json()->all();
 
         return $this->responseStore($this->model, $param);

@@ -32,5 +32,13 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('store',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'createMsc'])->name('msc.store');
     });
 
+    Route::prefix('mst')->group(function () {
+        Route::get('all',[App\Http\Controllers\API\Admin\MasterSportTypeController::class, 'all'])->name('mst.get');
+        Route::post('detail',[App\Http\Controllers\API\Admin\MasterSportTypeController::class, 'detail'])->name('mst.detail');
+        Route::put('update',[App\Http\Controllers\API\Admin\MasterSportTypeController::class, 'update'])->name('mst.update');
+        Route::delete('delete',[App\Http\Controllers\API\Admin\MasterSportTypeController::class, 'delete'])->name('mst.delete');
+        Route::post('store',[App\Http\Controllers\API\Admin\MasterSportTypeController::class, 'create'])->name('mst.store');
+    });
+
 
 });

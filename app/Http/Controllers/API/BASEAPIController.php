@@ -80,7 +80,7 @@ class BASEAPIController extends Controller
         try {
             $data = $model::find($id)
             ->update($data);
-            return $this->responseWithModel($model, $data, 200);
+            return $this->responseWithModel($model, $data, 201);
 
         } catch (Exception $th) {
             return $this->responseError($model, $th);

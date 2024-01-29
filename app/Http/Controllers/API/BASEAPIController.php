@@ -56,9 +56,15 @@ class BASEAPIController extends Controller
         }
     }
 
-    public function getAll($model){
+    public function getAll($model, $eager = [], $appends = []){
         try {
-            $data = $model::all();
+            if (count($eager) > 0 || count($appends) > 0) {
+                $data = $model::with($eager)->get()->append($appends);
+
+            }else{
+                $data = $model::all();
+            }
+
             return $this->responseWithModel($model, $data, 200);
 
         } catch (Exception $th) {

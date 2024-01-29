@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\UUID;
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +32,11 @@ class MstSportField extends Model
         'description'
     ];
 
+    protected $hidden = [
+        'cd_sport_center',
+        'cd_sport_type'
+    ];
+
     protected $casts = [
         'images' => 'array',
     ];
@@ -43,5 +49,9 @@ class MstSportField extends Model
     public function sportType(): BelongsTo
     {
         return $this->belongsTo(MstSportType::class, 'cd_sport_type', 'cd_sport_type');
+    }
+
+    public function getLinkAttribute(){
+        return asset('thumbnail/'.$this->thumbnail);
     }
 }

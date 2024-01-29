@@ -12,7 +12,7 @@ class MasterSportFieldController extends BASEAPIController
 
     public function all()
     {
-        return $this->getAll($this->model);
+        return $this->getAll($this->model, ['sportType', 'sportCenter'], ['link']);
     }
 
     public function detail(Request $request)

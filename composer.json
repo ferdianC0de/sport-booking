@@ -42,13 +42,18 @@
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "php artisan vendor:publish --provider='PHPOpenSourceSaver\\JWTAuth\\Providers\\LaravelServiceProvider'",
-            "@php artisan jwt:secret",
-            "@php artisan key:generate"
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-install-cmd": [
+            "@starter"
+        ],
+        "starter":[
+            "@php artisan vendor:publish --provider='PHPOpenSourceSaver\\JWTAuth\\Providers\\LaravelServiceProvider'",
+            "@php artisan jwt:secret -f",
+            "@php artisan key:generate"
         ]
     },
     "extra": {

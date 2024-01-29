@@ -4,9 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class BASEAPIController extends Controller
 {
@@ -27,13 +24,45 @@ class BASEAPIController extends Controller
         ], 500);
     }
 
+    public function responseDelete($model, $id){
+        try {
+            $data = $model::destroy($id);
+
+            return response()->json([
+                'status' => "data $model",
+                'user' => auth()->user(),
+                'messeage' => "Data Deleted",
+                'data' => $data
+            ], 202);
+
+        } catch (\Exception $e) {
+            return $this->responseError($model, $e);
+        }
+    }
+
+    public function responseStore($model, $param){
+        try {
+            $data = $model::create($param);
+
+            return response()->json([
+                'status' => "data $model",
+                'user' => auth()->user(),
+                'messeage' => "Created Success",
+                'data' => $data
+            ], 201);
+
+        } catch (\Exception $e) {
+            return $this->responseError($model, $e);
+        }
+    }
+
     public function getAll($model){
         try {
             $data = $model::all();
             return $this->responseWithModel($model, $data, 200);
 
         } catch (Exception $th) {
-            $this->responseError($model, $th);
+            return $this->responseError($model, $th);
         }
     }
 
@@ -43,7 +72,7 @@ class BASEAPIController extends Controller
             return $this->responseWithModel($model, $data, 200);
 
         } catch (Exception $th) {
-            $this->responseError($model, $th);
+            return $this->responseError($model, $th);
         }
     }
 
@@ -54,7 +83,7 @@ class BASEAPIController extends Controller
             return $this->responseWithModel($model, $data, 200);
 
         } catch (Exception $th) {
-            $this->responseError($model, $th);
+            return $this->responseError($model, $th);
         }
     }
 }

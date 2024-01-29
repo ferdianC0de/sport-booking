@@ -40,6 +40,18 @@ class MasterSportCenterController extends BASEAPIController
 
     }
 
+    public function deleteMsc(Request $request){
+        $param = $request->json()->all();
+
+        return $this->responseDelete(MstSportCenter::class, $param['id']);
+    }
+
+    public function createMsc(Request $request){
+        $param = $request->json()->all();
+
+        return $this->responseStore(MstSportCenter::class, $param);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,7 +70,7 @@ class MasterSportCenterController extends BASEAPIController
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

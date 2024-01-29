@@ -28,7 +28,9 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('all',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
         Route::post('detail',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getDetailMsc'])->name('msc.detail');
         Route::put('update',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'updateMsc'])->name('msc.update');
-        // Route::get('msc',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
-        // Route::get('msc',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'getAllMsc'])->name('msc.get');
+        Route::delete('delete',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'deleteMsc'])->name('msc.delete');
+        Route::post('store',[App\Http\Controllers\API\Admin\MasterSportCenterController::class, 'createMsc'])->name('msc.store');
     });
+
+
 });

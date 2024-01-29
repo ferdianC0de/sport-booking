@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\MstSportCenter;
+use App\Models\MstSportField;
 use App\Models\MstSportType;
 use Illuminate\Database\Seeder;
 use Str;
@@ -48,7 +49,7 @@ class DatabaseSeeder extends Seeder
             'cd_role' => $role1
         ]);
 
-        MstSportCenter::create([
+        $msc1 = MstSportCenter::create([
             'name' => 'Sport Center 1',
             'latitude' => '0.000000',
             'longtitude' => '0.000000',
@@ -74,13 +75,25 @@ class DatabaseSeeder extends Seeder
             'name' => "Sepak Bola",
             'description' => 'Olahraga Sepak Bola'
         ]);
-        MstSportType::create([
+        $mst2 = MstSportType::create([
             'name' => "Badminton",
             'description' => 'Olahraga Badminton'
         ]);
         MstSportType::create([
             'name' => "Basket",
             'description' => 'Olahraga Basket'
+        ]);
+
+        MstSportField::create([
+            'cd_sport_center' => $msc1->cd_sport_center,
+            'cd_sport_type' => $mst2->cd_sport_type,
+            'thumbnail' => 'default.jpg',
+            'images' => [
+                'gallery1.jpg',
+                'gallery2.jpg',
+                'gallery3.jpg',
+            ],
+            'description' => 'Lapangan 1'
         ]);
 
     }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mst_sport_fields', function (Blueprint $table) {
-            $table->string('sport_field')->primary();
+            $table->string('cd_sport_field')->primary();
             $table->string('cd_sport_center')->references('cd_sport_center')->on('mst_sport_centers');
             $table->string('cd_sport_type')->references('cd_sport_type')->on('mst_sport_types');
             $table->string('thumbnail');

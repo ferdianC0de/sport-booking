@@ -7,6 +7,8 @@ namespace Database\Seeders;
 use App\Models\MstSportCenter;
 use App\Models\MstSportField;
 use App\Models\MstSportType;
+use Database\Factories\MstSportCenterFactory;
+use Database\Factories\MstSportFieldFactory;
 use Illuminate\Database\Seeder;
 use Str;
 
@@ -49,28 +51,6 @@ class DatabaseSeeder extends Seeder
             'cd_role' => $role1
         ]);
 
-        $msc1 = MstSportCenter::create([
-            'name' => 'Sport Center 1',
-            'latitude' => '0.000000',
-            'longtitude' => '0.000000',
-            'address' => 'Depok',
-            'contact' => '081122334455'
-        ]);
-        MstSportCenter::create([
-            'name' => 'Sport Center 2',
-            'latitude' => '0.000000',
-            'longtitude' => '0.000000',
-            'address' => 'Depok',
-            'contact' => '081122337755'
-        ]);
-        MstSportCenter::create([
-            'name' => 'Sport Center 3',
-            'latitude' => '0.000000',
-            'longtitude' => '0.000000',
-            'address' => 'Depok',
-            'contact' => '0811223366'
-        ]);
-
         MstSportType::create([
             'name' => "Sepak Bola",
             'description' => 'Olahraga Sepak Bola'
@@ -84,17 +64,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Olahraga Basket'
         ]);
 
-        MstSportField::create([
-            'cd_sport_center' => $msc1->cd_sport_center,
-            'cd_sport_type' => $mst2->cd_sport_type,
-            'thumbnail' => 'default.jpg',
-            'images' => [
-                'gallery1.jpg',
-                'gallery2.jpg',
-                'gallery3.jpg',
-            ],
-            'description' => 'Lapangan 1'
-        ]);
-
+        MstSportCenter::factory(25)->create();
+        MstSportField::factory(50)->create();
     }
 }
